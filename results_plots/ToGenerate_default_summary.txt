@@ -1,0 +1,3 @@
+# in the aligner_benchmark directory execute the following command; it will (should!) generate the default_summary.txt 
+
+find . -name comp_res.txt |sort | xargs ruby ./read_stats.rb >> default_summary.txt
