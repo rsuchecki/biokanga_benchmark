@@ -7,7 +7,7 @@ OUTPUT_ROOT_PATH="/project/itmatlab/aligner_benchmark/tool_results"
 SCRIPTS_PATH="/project/itmatlab/aligner_benchmark/scripts"
 
 #
-BIOKANGA_PATH="/home/ste69r/bin"
+BIOKANGA_PATH="/docker/biokanga-4.3.10/biokanga"
 BIOKANGA_ALIGN_CMD="biokanga align"
 BIOKANGA_INDEX_CMD="biokanga index"
 
@@ -72,8 +72,8 @@ HISAT_ALIGN_CMD="hisat"
 
 
 # Hisat2
-HISAT2_PATH="/home/ste69r/hisat2/hisat2-2.0.5"
-LASTVERSION_HISAT2_PATH="/home/ste69r/hisat2/hisat2-2.0.5"
+HISAT2_PATH="/docker/hisat2-2.0.5/"
+LASTVERSION_HISAT2_PATH="/docker/hisat2-2.0.5/"
 HISAT2_INDEX_CMD="hisat2-build"
 HISAT2_ALIGN_CMD="hisat2"
 
