@@ -9,6 +9,8 @@ source $DATASET_PARAM
 
 source /project/itmatlab/aligner_benchmark/jobs/settings/variable.sh
 
+ADDITIONAL_PARAMS=$3
+
 # define tool
 TOOL="biokanga"
 
@@ -32,5 +34,5 @@ $BIOKANGA_PATH/$BIOKANGA_ALIGN_CMD -Fbiokangaalign_PE.log \
         -D50000 \
         -i$READS_PATH/$READ_1_FILE -u$READS_PATH/$READ_2_FILE \
 	-o$OUTPUT_ALIGNMENT_PATH/Aligned.out.sam \
-	-T$NUM_THREAD
+	-T$NUM_THREAD ${ADDITIONAL_PARAMS}
 
