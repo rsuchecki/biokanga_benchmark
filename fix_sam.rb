@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 #####
 #
 # Expects sam sorted by read name!
@@ -155,7 +157,7 @@ def fix_cigar(fields, read_length)
   end
   if num == read_length
     return fields
-  else 
+  else
     fields[5] += "#{read_length-num}S"
     return fields
   end
@@ -269,7 +271,7 @@ def run_all(arguments)
   lines = []
   first = true
   while !sam_file.eof?
-    
+
     line = sam_file.readline()
     if line =~ /^@/
       puts line
@@ -281,13 +283,13 @@ def run_all(arguments)
     fields[0] =~ /(\d+)/
     num_out = $1.to_i
     last_written ||= num_out
-    
+
     #num_out = nil
     if lines.length != 0
       #Contextmap2 case
       $logger.debug("KAFKA")
       if get_name(lines[0][0]) != get_name(fields[0])
-        exit if num_out > endnum 
+        exit if num_out > endnum
         fix_lines(lines,current_name,options) if num_out > startnum
 
         current_name =~ /(\d+)/
@@ -338,7 +340,7 @@ def run_all(arguments)
     if old_num > 1 && first
       k = 1
       first = false
-      while k < old_num 
+      while k < old_num
         if k > startnum
           add_empty_lines(k) if options[:fill]
           last_written = k
@@ -355,7 +357,7 @@ def run_all(arguments)
         add_empty_lines(num_out+1) if options[:fill]
         last_written = num_out+1
       end
-      
+
       #num_out = "seq.#{num_out+1}"
       num_out += 1
       #STDERR.puts "HERE: #{num}"

@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require 'optparse'
 require "erubis"
 require 'logger'
@@ -327,7 +329,7 @@ skipping_sides: #{@skipping_sides.join(":")}}
       skipping_false_negative_rate = ((1 - (@skipping_called_correctly.to_f / @total_number_of_bases_in_true_skipping.to_f * 10000).to_i / 10000.0) * 100 * 10000).to_i/10000.0
       out += "skipping FN rate:\t#{skipping_false_negative_rate}%\n"
     end
-    
+
     #puts "number of bases in true insertions = #{@total_number_of_bases_in_true_insertions}"
 
     #if(@total_number_of_bases_in_true_skipping_binary==0)
@@ -465,7 +467,7 @@ class MappingObject
         end
       end
       $logger.debug("matches: #{starts.join("|")}; #{stops.join("|")}")
-      
+
       matches_new = []
       starts.each_with_index do |s,i|
         matches_new << [s,stops[i]]
@@ -530,7 +532,7 @@ def cut_adapters(cig_group,num_cut_bases)
     starts_dup = starts.dup
     ends_dup = ends.dup
 
-    if fields[0] =~ /a$/ 
+    if fields[0] =~ /a$/
       #forward = true
       count = 0
       (cig_cigar_nums.length-1).downto(0) do |i|
@@ -552,7 +554,7 @@ def cut_adapters(cig_group,num_cut_bases)
           break
         end
         count += 1
-      end 
+      end
     else
       count = 0
       cig_cigar_nums.each_with_index do |e,i|
@@ -686,7 +688,7 @@ def find_best_match(current_group,cig_group)
 end
 
 def find_best_match_single(current_group,cig_group)
-  
+
   scores = []
   current_group.each do |e|
     e_fields = e.split("\t")
@@ -695,7 +697,7 @@ def find_best_match_single(current_group,cig_group)
   end
   ind = scores.find_index(scores.max)
   #puts scores
-  
+
   current_group = [current_group[ind]]
   multi = true if scores.max == 3
   return current_group, multi
@@ -864,10 +866,10 @@ def comp_base_by_base(s_sam,c_cig,stats,skipping_length,skipping_binary,options)
   $logger.debug("MATCHES")
   matches_misaligned = compare_ranges(c_cig_mo.matches.flatten, s_sam_mo.matches.flatten)
   if matches_misaligned[0]  > options[:read_length]
-    matches_misaligned[0] = options[:read_length]  
+    matches_misaligned[0] = options[:read_length]
   end
   if matches_misaligned[0] + matches_misaligned[1] > options[:read_length]
-    
+
     matches_misaligned[1] = options[:read_length] - matches_misaligned[0]
     #puts matches_misaligned
     #STDIN.gets
@@ -877,7 +879,7 @@ def comp_base_by_base(s_sam,c_cig,stats,skipping_length,skipping_binary,options)
   stats.deletions_called_correctly += deletions_incorrect[0]
   stats.total_number_of_bases_called_deletions += deletions_incorrect[1] + deletions_incorrect[0]
   stats.total_number_of_bases_aligned_incorrectly += deletions_incorrect[1]
-  
+
 
   stats.total_number_of_bases_aligned_correctly += matches_misaligned[0] -deletions_incorrect[1]
   stats.total_number_of_bases_aligned_correctly_pair += matches_misaligned[0]#-deletions_incorrect[1]
@@ -944,9 +946,9 @@ def process(current_group, cig_group, stats,options)
   end
   multi = false
   multi1 = false
-  
+
   cig_group.each do |l|
-    
+
     l = l.split("\t")
     k = l[4].dup
     inserts = 0
@@ -1025,7 +1027,7 @@ def process(current_group, cig_group, stats,options)
         if s[2] != l[1]
           stats.total_number_of_bases_aligned_incorrectly += options[:read_length]
           stats.total_number_of_reads_aligned_incorrectly += 1
-          if multi 
+          if multi
             stats.total_number_of_bases_aligned_correctly += options[:read_length]
             stats.total_number_of_bases_aligned_correctly_pair += options[:read_length]
             stats.insertions_called_correctly += inserts
@@ -1042,7 +1044,7 @@ def process(current_group, cig_group, stats,options)
             stats.total_number_of_reads_aligned_correctly += 1
             stats.total_number_of_reads_aligned_correctly_pair += 1
           else
-            stats.total_number_of_bases_aligned_incorrectly_pair += options[:read_length] 
+            stats.total_number_of_bases_aligned_incorrectly_pair += options[:read_length]
             stats.total_number_of_reads_aligned_incorrectly_pair += 1
           end
         else
@@ -1093,10 +1095,10 @@ def compare(truth_cig, sam_file, options)
     now_num = $1
     line =~ /seq.\d+(a|b)/
     current_letter ||= $1
-    now_letter = $1 
+    now_letter = $1
     if current_num == now_num && !options[:single_end]
       current_group << line
-    elsif current_num == now_num && options[:single_end] && current_letter == now_letter 
+    elsif current_num == now_num && options[:single_end] && current_letter == now_letter
       current_group << line
     else
       cig_group << truth_cig_handler.readline.chomp
