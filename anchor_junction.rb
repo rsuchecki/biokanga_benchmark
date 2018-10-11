@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 #/project/itmatlab/aligner_benchmark/dataset/human/dataset_t3r1/anchor/cig
 # fixed.sam
 sam_file = ARGV[0]
@@ -45,4 +47,3 @@ Dir["/project/itmatlab/aligner_benchmark/dataset/#{species}/dataset_#{dataset}/j
 	`ruby #{File.expand_path(File.dirname(__FILE__))}/compare2truth_multi_mappers.rb -s #{fn} #{filenames[ind]}_s > #{filenames[ind]}_comp_res_multi_mappers.txt`
 	`ruby #{File.expand_path(File.dirname(__FILE__))}/compare2truth.rb -s #{fn} #{filenames[ind]}_s > #{filenames[ind]}_comp_res.txt`
 end
-	

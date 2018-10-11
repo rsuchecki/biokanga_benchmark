@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require 'logger'
 require './logging'
 include Logging
@@ -222,7 +224,7 @@ def submit(cmd, options)
       $logger.error("unable to execute as a subprocess --- #{cmd}")
       return 1
     end
-    num = $?.to_i   # returning the exit status 
+    num = $?.to_i   # returning the exit status
   end
   num
 end
@@ -1156,7 +1158,7 @@ def run_biokanga(options, source_of_tree, dataset)
       options[:tool_result_path] = p.gsub(/\/[\.\w]*Aligned\.out\.sam$/,"")
       shell_file = "#{options[:jobs_path]}/biokanga_statistics_#{options[:species]}_#{dataset}_default.sh"
     end
-  
+
 
     $logger.debug("checking if results exist along the #{options[:stats_path]}\n")
 

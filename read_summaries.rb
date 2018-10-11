@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require 'logger'
 path = File.expand_path(File.dirname(__FILE__))
 require "#{path}/logging"
@@ -158,7 +160,7 @@ class Run
       "JUNCLEVEL" => {} }
   end
 
-  attr_accessor :species, :dataset, :replicate, :adapter_length, 
+  attr_accessor :species, :dataset, :replicate, :adapter_length,
     :anchor_length, :algorithms, :levels
 
   def to_s
@@ -187,12 +189,12 @@ def read_files(argv, options)
     if options[:adapter]
       arg =~ /\/([a-z]*)_(\d+).t\w{2}$/
       adapter_length = $2
-      $logger.debug("adapter_length #{adapter_length}") 
+      $logger.debug("adapter_length #{adapter_length}")
     end
     if options[:anchor]
       arg =~ /\/([a-z]*)_(\d+).t\w{2}$/
       anchor_length = $2
-      $logger.debug("anchor_length #{anchor_length}") 
+      $logger.debug("anchor_length #{anchor_length}")
     end
     level = nil
     names = []
@@ -363,7 +365,7 @@ def print_all_default(all)
             end
           end
           if e.algorithms.to_a[i] =~ /^olego/
-            if e.algorithms.to_a[i] == "olegotwopass" || 
+            if e.algorithms.to_a[i] == "olegotwopass" ||
               e.algorithms.to_a[i] == "olego"
               name = "olego"
             else

@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require 'logger'
 path = File.expand_path(File.dirname(__FILE__))
 require "#{path}/logging"

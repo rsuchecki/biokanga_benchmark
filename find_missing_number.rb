@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 old = nil
 File.open(ARGV[0]).each do |line|
 	line.chomp!
@@ -7,7 +9,7 @@ File.open(ARGV[0]).each do |line|
   old ||= current_num
   if current_num == old || current_num == old+1
   	old = current_num
-  else 
+  else
   	puts line
   	exit
   end

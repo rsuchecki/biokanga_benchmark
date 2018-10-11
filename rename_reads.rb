@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require 'optparse'
 require "erubis"
 require 'logger'
@@ -86,7 +88,7 @@ def run_all(arguments)
   sam_file = File.open(arguments[0])
   startnum = options[:start]-1
   while !sam_file.eof?
-    
+
     line = sam_file.readline()
     line.chomp!
     if line =~ /^@/
