@@ -965,8 +965,8 @@ end
 
 def run(argv)
   options = setup_options(argv)
-  truth_cig = argv[0] if exists?(argv[0])
-  sam_file = argv[1] if exists?(argv[1])
+  truth_cig = argv[0] #if exists?(argv[0])
+  sam_file = argv[1] #if exists?(argv[1])
   $logger.info("Options are #{options}")
 
   files_valid?(truth_cig,sam_file,options)
