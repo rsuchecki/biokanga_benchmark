@@ -969,7 +969,7 @@ def run(argv)
   sam_file = argv[1] #if exists?(argv[1])
   $logger.info("Options are #{options}")
 
-  files_valid?(truth_cig,sam_file,options)
+  # files_valid?(truth_cig,sam_file,options)
   stats = compare(truth_cig, sam_file, options)
   $logger.info(stats)
   puts stats.process()
